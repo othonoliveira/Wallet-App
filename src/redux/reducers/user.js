@@ -2,15 +2,14 @@
 
 const INTI_STATE = {
   email: '',
-  password: '',
 };
 
 const users = (state = INTI_STATE, action) => {
   switch (action.type) {
-  case 'LOGIN':
+  case 'ADD_EMAIL':
     return {
-      email: action.payload.email,
-      password: action.payload.password,
+      ...state,
+      email: action.payload,
     };
 
   //   break;

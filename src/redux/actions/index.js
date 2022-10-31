@@ -1,8 +1,8 @@
 // Coloque aqui suas actions
 
-const actionSaveData = (type, payload) => ({
-  type,
+const addEmail = (payload) => ({
+  type: 'ADD_EMAIL',
   payload,
 });
 
-export default actionSaveData;
+export default addEmail;
