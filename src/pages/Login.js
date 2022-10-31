@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import addEmail from '../redux/actions';
 
-const validaEmail = /^[a-z0-9.]+@[a-z0-9]+.[a-z]+.([a-z]+)?$/i;
+const validaEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/i;
 const FIVE = 5;
 
 class Login extends React.Component {
@@ -19,7 +19,7 @@ class Login extends React.Component {
     console.log(validatedPassword);
     if (validatedEmail && validatedPassword) {
       this.setState({ disabled: false });
-    }
+    } else { this.setState({ disabled: true }); }
   };
 
   handleChange = async (event) => {
