@@ -7,8 +7,8 @@ class WalletForm extends Component {
     value: '',
     description: '',
     currency: 'USD',
-    method: 'cash',
-    tag: 'food',
+    method: 'Dinheiro',
+    tag: 'Alimentação',
   };
 
   handleChange = ({ target }) => {
@@ -24,7 +24,7 @@ class WalletForm extends Component {
     await dispatch(fetchExchangeRates());
     const { exchangeRates, expenses } = this.props;
     dispatch(addExpense({
-      id: +expenses.length,
+      id: expenses.length,
       ...state,
       exchangeRates,
     }, 'ADD_EXPENSE'));
@@ -89,9 +89,9 @@ class WalletForm extends Component {
             value={ method }
           >
             {/* <option value="Select your method" disabled>Payment method</option> */}
-            <option value="cash">Dinheiro</option>
-            <option value="credit">Cartão de crédito</option>
-            <option value="debit">Cartão de débito</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
           </select>
         </label>
         <label htmlFor="tag">
@@ -104,11 +104,11 @@ class WalletForm extends Component {
             value={ tag }
           >
             {/* <option value="Select the tag" disabled>Tag</option> */}
-            <option value="food">Alimentação</option>
-            <option value="leisure">Lazer</option>
-            <option value="work">Trabalho</option>
-            <option value="transportation">Transporte</option>
-            <option value="health">Saúde</option>
+            <option value="Alimentação">Alimentação</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Trabalho">Trabalho</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Saúde">Saúde</option>
           </select>
         </label>
         <button onClick={ this.handleClick } type="button">Adicionar despesa</button>
