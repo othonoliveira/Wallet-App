@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import addEmail from '../redux/actions';
+import { addEmail } from '../redux/actions';
 
 const validaEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/i;
 const FIVE = 5;
@@ -31,7 +31,7 @@ class Login extends React.Component {
   handleClick = () => {
     const { dispatch, history } = this.props;
     const { email } = this.state;
-    dispatch(addEmail(email, 'ADD_EMAIL'));
+    dispatch(addEmail(email));
     history.push('/carteira');
   };
 

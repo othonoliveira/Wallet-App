@@ -4,7 +4,7 @@ const INTI_STATE = {
   email: '',
 };
 
-const users = (state = INTI_STATE, action) => {
+const user = (state = INTI_STATE, action) => {
   switch (action.type) {
   case 'ADD_EMAIL':
     return {
@@ -18,4 +18,4 @@ const users = (state = INTI_STATE, action) => {
   }
 };
 
-export default users;
+export default user;
