@@ -5,6 +5,8 @@ const INTI_STATE = {
   error: null,
   expenses: [],
   exchangeRates: {},
+  edit: false,
+  editionID: 0,
 };
 
 const wallet = (state = INTI_STATE, action) => {
@@ -28,6 +30,18 @@ const wallet = (state = INTI_STATE, action) => {
     return {
       ...state,
       expenses: [...state.expenses, action.expense],
+    };
+  case 'EDIT_EXPENSE':
+    return {
+      ...state,
+      editionID: action.editionID,
+      edit: true,
+    };
+  case 'UPDATE_EXPENSES':
+    return {
+      ...state,
+      edit: false,
+      expenses: [...action.expenses],
     };
   //   break;
   default:

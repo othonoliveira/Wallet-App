@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { editExpense } from '../redux/actions';
 import './Table.css';
 
 class Table extends Component {
+  editButton = async (id) => {
+    const { dispatch } = this.props;
+    await dispatch(editExpense(id));
+  };
+
   render() {
     const { expenses } = this.props;
     return (
@@ -34,6 +40,22 @@ class Table extends Component {
                   .toFixed(2)}
               </td>
               <td>Real</td>
+              <td>
+                <button
+                  data-testid="edit-btn"
+                  onClick={ () => this.editButton(expense.id) }
+                  type="button"
+                >
+                  Editar
+                </button>
+                <button
+                  data-testid="-btn"
+                  onClick={ () => this.editButton(expense.id) }
+                  type="button"
+                >
+                  Editar
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

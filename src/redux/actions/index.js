@@ -62,7 +62,6 @@ export function fetchExchangeRates() {
 
     try {
       const response = await getCurrencies();
-      console.log(response);
       dispatch(responseExchangeRateSuccess(response));
     } catch (error) {
       dispatch(responseExchangeRatesError(error));
@@ -75,3 +74,20 @@ export const addExpense = (expense) => ({
   type: 'ADD_EXPENSE',
   expense,
 });
+
+// action creator
+export const editExpense = (editionID) => ({
+  type: 'EDIT_EXPENSE',
+  editionID,
+});
+
+export const updateExpenses = (expenses) => ({
+  type: 'UPDATE_EXPENSES',
+  expenses,
+});
+
+// action creator
+// export const saveExpenses = (expenses) => ({
+//   type: 'SAVE_EXPENSES',
+//   expenses,
+// });

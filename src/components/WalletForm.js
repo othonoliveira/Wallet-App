@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addExpense, fetchExchangeRates } from '../redux/actions';
+import { addExpense, fetchExchangeRates, updateExpenses } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -32,14 +32,34 @@ class WalletForm extends Component {
       value: '',
       description: '',
       currency: 'USD',
-      method: 'cash',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
+    });
+  };
+
+  editExpense = async () => {
+    const { dispatch } = this.props;
+    const { state } = this;
+    await dispatch(fetchExchangeRates());
+    const { expenses, editionID, exchangeRates } = this.props;
+    expenses[editionID] = {
+      id: editionID,
+      ...state,
+      exchangeRates,
+    };
+    this.setState({
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
       tag: 'food',
     });
+    await dispatch(updateExpenses(expenses));
   };
 
   render() {
     const { value, description, currency, method, tag } = this.state;
-    const { currencies } = this.props;
+    const { currencies, edit } = this.props;
     return (
       <div>
         <label htmlFor="value">
@@ -111,7 +131,9 @@ class WalletForm extends Component {
             <option value="Saúde">Saúde</option>
           </select>
         </label>
-        <button onClick={ this.handleClick } type="button">Adicionar despesa</button>
+        <button onClick={ edit ? this.editExpense : this.handleClick } type="button">
+          { (edit) ? 'Editar despesa' : 'Adicionar despesa' }
+        </button>
       </div>
     );
   }
@@ -121,6 +143,8 @@ const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
   exchangeRates: state.wallet.exchangeRates,
   expenses: state.wallet.expenses,
+  edit: state.wallet.edit,
+  editionID: state.wallet.editionID,
 });
 
 WalletForm.propTypes = {}.isRequired;
