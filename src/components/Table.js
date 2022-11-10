@@ -11,7 +11,7 @@ class Table extends Component {
 
   deleteButton = async (expense) => {
     const { expenses, dispatch } = this.props;
-    const updatedExpenses = expenses.filter((element) => element !== expense);
+    const updatedExpenses = expenses.filter((element) => element.id !== expense.id);
     await dispatch(deleteExpense(updatedExpenses));
   };
 
