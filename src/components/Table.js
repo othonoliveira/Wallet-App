@@ -11,8 +11,7 @@ class Table extends Component {
 
   deleteButton = async (expense) => {
     const { expenses, dispatch } = this.props;
-    const updatedExpenses = expenses.filter((element) => element.id !== expense.id);
-    console.log(updatedExpenses);
+    const updatedExpenses = expenses.filter((element) => element !== expense);
     await dispatch(deleteExpense(updatedExpenses));
   };
 
@@ -34,8 +33,8 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          {expenses.map((expense, index) => (
-            <tr key={ index }>
+          {expenses.map((expense) => (
+            <tr key={ expense.id }>
               <td>{expense.description}</td>
               <td>{expense.tag}</td>
               <td>{expense.method}</td>
