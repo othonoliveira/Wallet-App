@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { editExpense } from '../redux/actions';
+import { deleteExpense, editExpense } from '../redux/actions';
 import './Table.css';
 
 class Table extends Component {
   editButton = async (id) => {
     const { dispatch } = this.props;
     await dispatch(editExpense(id));
+  };
+
+  deleteButton = async (expense) => {
+    const { expenses, dispatch } = this.props;
+    const updatedExpenses = expenses.filter((element) => element.id !== expense.id);
+    console.log(updatedExpenses);
+    await dispatch(deleteExpense(updatedExpenses));
   };
 
   render() {
@@ -49,11 +56,11 @@ class Table extends Component {
                   Editar
                 </button>
                 <button
-                  data-testid="-btn"
-                  onClick={ () => this.editButton(expense.id) }
+                  data-testid="delete-btn"
+                  onClick={ () => this.deleteButton(expense) }
                   type="button"
                 >
-                  Editar
+                  Excluir
                 </button>
               </td>
             </tr>

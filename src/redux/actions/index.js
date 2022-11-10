@@ -87,7 +87,7 @@ export const updateExpenses = (expenses) => ({
 });
 
 // action creator
-// export const saveExpenses = (expenses) => ({
-//   type: 'SAVE_EXPENSES',
-//   expenses,
-// });
+export const deleteExpense = (updatedExpenses) => ({
+  type: 'DELETE_EXPENSE',
+  updatedExpenses,
+});

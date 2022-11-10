@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addExpense, fetchExchangeRates, updateExpenses } from '../redux/actions';
 
+const defaultState = {
+  value: '',
+  description: '',
+  currency: 'USD',
+  method: 'Dinheiro',
+  tag: 'Alimentação',
+};
+
 class WalletForm extends Component {
   state = {
     value: '',
@@ -28,13 +36,7 @@ class WalletForm extends Component {
       ...state,
       exchangeRates,
     }, 'ADD_EXPENSE'));
-    this.setState({
-      value: '',
-      description: '',
-      currency: 'USD',
-      method: 'Dinheiro',
-      tag: 'Alimentação',
-    });
+    this.setState(defaultState);
   };
 
   editExpense = async () => {
@@ -47,13 +49,7 @@ class WalletForm extends Component {
       ...state,
       exchangeRates,
     };
-    this.setState({
-      value: '',
-      description: '',
-      currency: 'USD',
-      method: 'Dinheiro',
-      tag: 'food',
-    });
+    this.setState(defaultState);
     await dispatch(updateExpenses(expenses));
   };
 

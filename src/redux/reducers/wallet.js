@@ -43,6 +43,11 @@ const wallet = (state = INTI_STATE, action) => {
       edit: false,
       expenses: [...action.expenses],
     };
+  case 'DELETE_EXPENSE':
+    return {
+      ...state,
+      expenses: action.updatedExpenses,
+    };
   //   break;
   default:
     return state;
